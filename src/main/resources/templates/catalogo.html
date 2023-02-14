@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
+    <title>Catálogo</title>
+
+    <style type="text/css">
+        body {
+    
+            background-color : #ffffff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: rgb(0, 0, 0);
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+        
+        a#nomeL {
+            margin-left: 35px;
+        }
+        
+        li#menu {
+            margin-right: 35px;
+            font-size: 100pt;
+        }
+        
+        div#catalogo {
+            padding: 5px 5px 5px 5px;
+            background-color: rgb(98, 113, 126);
+            box-shadow: 8px 8px 5px rgb(0, 0, 0);
+            margin-top: 45px;
+            border-radius: 10px;
+        }
+        
+        div#botoes {
+            margin-top: 10px;
+        }
+        </style>
+</head>
+<body>
+
+    <nav name="Logo" id="logo">
+		<div class="nav-wrapper black">
+			<a href="/" class="brand-logo" id="nomeL">Farmácia</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="/farmacia/logar"> Sair</a></li>
+			</ul>
+		</div>
+	</nav>
+
+    <div class="container" id=catalogo>
+		<div class="row" style="margin-top: 30px; size: 100px;">
+			<div class="col s3" th:each="r : ${remedios}">
+				<div class="card">
+					<div class="card-image">
+						<img src="https://i.pinimg.com/564x/96/c3/40/96c34000f8bd08f34aae16874c5810c8.jpg"> <span class="card-title"
+							th:text="${r.nome}">Remédio</span> <a th:href="@{/farmacia/catalogo/{id}/selecionar(id=${r.id})}"
+							class="btn-floating halfway-fab waves-effect waves-light red"><i
+							class="material-icons">add</i></a>
+					</div>
+					<div class="card-content">
+						<p th:text="${r.descricao}">para dor de cabeça</p>
+						<p>
+							Preço: R$ <span th:text="${r.preco}">10</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Sacola</span>
+                        <p th:if="${mensagem}" th:text="${mensagem}"></p>
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="e : ${remediosEsc}">
+                                    <td th:text="${e.nome}">feijao</td>
+                                    <td>R$ <span th:text="${e.preco}">00</span></td>
+                                    <td><a method="post" th:href="@{/farmacia/catalogo/{id}/retirar(id=${e.id})}" ><i class="material-icons">delete</i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a class="waves-effect waves-light btn" href="/farmacia/catalogo/comprar">Confirmar Compra</a>
+                        <a class="waves-effect waves-light btn">Voltar</a>
+                        
+                        <br>
+                        <br>
+                        <br>
+    
+
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+</body>
+</html>

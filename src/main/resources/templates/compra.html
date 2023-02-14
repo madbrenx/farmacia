@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        div#comprovante {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        textarea#texto {
+            height: 300px;
+        }
+        
+        h6#numero{
+        	text-align: center;
+        }
+    </style>
+    <script>
+        function copiar() {
+
+            var content = document.getElementById('texto');
+
+            content.select();
+            document.execCommand('copy');
+
+            alert("Copied!");
+        }
+    </script>
+</head>
+
+<body>
+
+    <nav name="Logo" id="logo">
+        <div class="nav-wrapper black">
+            <a href="/" class="brand-logo" id="nomeL">Farmácia</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            </ul>
+        </div>
+    </nav>
+    <title>Lista de Mercadorias</title>
+    <div class="container" id="comprovante" th:object="${compra}">
+        <textarea th:field="*{texto}" name= id="texto" cols="100" rows="200"></textarea>
+        <a class="waves-effect waves-light btn" onclick="copiar()">Copiar</a>
+        <a class="waves-effect waves-light btn" href="/farmacia/compras/sair">Sair</a>
+    </div>
+    <footer>
+    	<div>
+    	<h6 id="numero"> Numero da empresa: 99999-9999</h6>
+    	</div>
+    </footer>
+    
+
+</body>
+
+</html>

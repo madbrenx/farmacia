@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<style type="text/css">
+body {
+	background-color: #ffffff;
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: rgb(0, 0, 0);
+	font-family: Arial, sans-serif;
+}
+
+a#nomeL {
+	margin-left: 35px;
+}
+
+li#login {
+	margin-right: 35px;
+	font-size: 100pt;
+}
+
+div#titulo {
+	text-align: center;
+}
+
+div#cadastro {
+	width: 500px;
+	height: 440px;
+	background-color: rgb(98, 113, 126);
+	font-family: 'Lobster', cursive;
+	margin-top: 50px;
+	border-radius: 30px;
+	text-align: center;
+	position: relative;
+}
+
+form#interno {
+	padding: 0px 50px 0px 50px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+p#erro {
+	color: red;
+}
+</style>
+</head>
+
+<body>
+	<nav name="Logo" id="logo">
+		<div class="nav-wrapper black">
+			<a href="/" class="brand-logo" id="nomeL">Farmácia</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="/farmacia/logar"> Login</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div id="titulo">
+		<h3>Cadastro de Usuários</h3>
+	</div>
+
+	<div class="container" id="cadastro">
+		<div class="row">
+			<form class="col s12" id="interno" action="/farmacia/salvarUsuarios"
+				method="post">
+
+				<div class="row">
+					<div class="input-field col s12">
+						<label class="inputName">Nome</label><br> <input name="nome"
+							type="text" class="validate">
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<label class="inputName">E-mail</label><br> <input
+							name="email" type="text" class="validate">
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<label class="inputName">Senha</label> <br> <input
+							name="senha" type="password" class="validate">
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="btn" id="botao">Cadastrar-se</button>
+					<button type="reset" class="btn" id="botao">Limpar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

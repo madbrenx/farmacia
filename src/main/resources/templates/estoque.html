@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estoque</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+</head>
+<body>
+
+	<nav name="Logo" id="logo">
+		<div class="nav-wrapper black">
+			<a href="/" class="brand-logo" id="nomeL">Farmácia</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="/farmacia/remedios"> Remedios</a></li>
+				<li><a href="/farmacia/logar"> Sair</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<form action="/farmacia/estoque/salvar" method="post" th:object="${remedio}">
+			<div>
+				<input type="hidden" th:field="*{id}" readonly="readonly">
+			</div>
+			<div>
+				<label>Nome: </label>
+				<p class="red-text text-darken-2"></p>
+				<input type="text" th:field=*{nome} readonly="readonly">
+			</div>
+			<div>
+				<input type="hidden" th:field="*{descricao}" readonly="readonly">
+			</div>
+			<div>
+				<input type="hidden" th:field="*{preco}" readonly="readonly">
+			</div>
+			<div>
+				<input type="hidden" th:field="*{texto}" readonly="readonly">
+			</div>
+			<div>
+				<label>Nova Quantidade: </label>
+				<p class="red-text text-darken-2"></p>
+				<input type="text" th:field=*{quantidade}>
+			</div>
+
+			<button type="submit" class="btn">Salvar</button>
+		</form>
+	</div>
+
+	<div class="container">
+		<div class="row" style="margin-top: 30px; size: 100px;">
+			<div class="col s3" th:each="i : ${remedios}">
+				<div class="card">
+					<div class="card-image">
+						<img
+							src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWVkaWNpbmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+						<span class="card-title" th:text="${i.nome}">Remédio</span>
+					</div>
+					<div class="card-content">
+						<p th:text="${i.descricao}">
+							Descrição:
+						</p>
+						<p>
+							Preço: R$ <span th:text="${i.preco}">10</span>
+						</p>
+						<p>
+							Quantidade: <span th:text="${i.quantidade}"></span>
+						</p>
+						<a class="waves-effect waves-light btn"
+							th:href=@{/farmacia/estoque/{id}/editar(id=${i.id})}>Mudar
+							Quantidade</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
